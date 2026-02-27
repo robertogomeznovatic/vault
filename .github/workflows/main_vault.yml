@@ -45,7 +45,8 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'vault'                           # coincide con msdeploySite
+          app-name: 'vaults'                           # coincide con msdeploySite
           slot-name: ''                                # dejar vacío si no hay slots
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9DD79342D3E64BDC96F2451E56339494 }}
           package: .
+
