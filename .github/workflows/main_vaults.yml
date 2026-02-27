@@ -36,7 +36,7 @@ jobs:
           path: .
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: build
     
     steps:
@@ -50,7 +50,8 @@ jobs:
         id: deploy-to-webapp
         with:
           app-name: 'vaults'
-          slot-name: 'Production'
+          slot-name: ''
           package: .
 
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DDD937ED32E940688FA868B1EAC23CEF }}
+
