@@ -1,6 +1,10 @@
 const sqlite3 = require('sqlite3').verbose();
 
-const db = new sqlite3.Database('./vault.db');
+const dbPath = process.env.WEBSITE_INSTANCE_ID
+  ? path.join(process.env.HOME || 'C:\\home\\site\\wwwroot', 'vault.db')
+  : path.join(__dirname, 'vault.db');
+
+const db = new sqlite3.Database(dbPath);
 
 db.serialize(() => {
   db.run(`CREATE TABLE IF NOT EXISTS users (
