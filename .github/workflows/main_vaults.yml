@@ -50,10 +50,11 @@ jobs:
         id: deploy-to-webapp
         with:
           app-name: 'vaults'
-          slot-name: 'Produccion'
+          slot-name: 'Production'
           package: .
 
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DDD937ED32E940688FA868B1EAC23CEF }}
+
 
 
 
