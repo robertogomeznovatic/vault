@@ -1,4 +1,4 @@
-name: Build and deploy Node.js app to Azure Web App - vault
+name: Build and deploy Node.js app to Azure Web App - vaults
 
 on:
   push:
@@ -13,15 +13,15 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Node.js version
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '22.x'   # Azure recomienda LTS
-      - name: npm install and build
+          node-version: '18.x'   # LTS recomendado por Azure
+      - name: Install dependencies and build
         run: |
           npm install
           npm run build --if-present
-      # Opcional: puedes comentar test hasta que tengas uno real
+      # Si no tienes tests, comentar la siguiente línea
       #- npm run test --if-present
       - name: Upload artifact for deployment
         uses: actions/upload-artifact@v4
@@ -41,12 +41,11 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: node-app
-      - name: 'Deploy to Azure Web App'
+      - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'vaults'                           # coincide con msdeploySite
-          slot-name: ''                                # dejar vacío si no hay slots
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9DD79342D3E64BDC96F2451E56339494 }}
+          app-name: 'vaults'    # debe coincidir con msdeploySite
+          slot-name: ''          # dejar vacío si no hay slots
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
           package: .
-
