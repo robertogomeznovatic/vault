@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+  vault:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./vault.db:/app/vault.db
+    restart: always
